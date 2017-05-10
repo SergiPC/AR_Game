@@ -20,7 +20,26 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 w = GamePad.GetAxis(GamePad.Axis.LeftStick, GamePad.Index.One, true);
+        
+        if(Input.GetKey(KeyCode.A))
+        {
+            w.x = -1;
+        }
 
+        if (Input.GetKey(KeyCode.D))
+        {
+            w.x = 1;
+        }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            w.y = 1;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            w.y = -1;
+        }
 
         if (GamePad.GetButtonDown(GamePad.Button.A, GamePad.Index.One))
         {
@@ -29,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody.AddForce(movement.normalized* playerRigidbody.mass*4,ForceMode.Impulse);
         }
         
-        Move(w.x, w.y);
+        Move(w.y, w.x);
         //Turning();
         Animating(w.x, w.y);
     }
