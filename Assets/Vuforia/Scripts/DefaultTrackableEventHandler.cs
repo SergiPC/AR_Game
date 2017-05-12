@@ -81,6 +81,7 @@ namespace Vuforia
             foreach (Collider component in colliderComponents)
             {
                 component.enabled = true;
+                component.gameObject.SetActive(true);
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
@@ -102,6 +103,7 @@ namespace Vuforia
             foreach (Collider component in colliderComponents)
             {
                 component.enabled = false;
+                component.gameObject.SetActive(false);
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
