@@ -7,6 +7,7 @@ TagManager:
   - Collide
   - Projectil
   - NormalTurret
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -16,11 +17,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player01
+  - Player02
+  - Player03
+  - Player04
+  - Ground
   - 
   - 
   - 

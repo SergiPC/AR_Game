@@ -6,9 +6,12 @@ using UnityEngine;
 public class SimpleController : MonoBehaviour {
 
     // Player Handling.
-    public float gravity = 20;
+    public float gravity = 1;
     public float speed = 8;
-    public float acceleration = 12;
+    public float acceleration = 20;
+    public float jumpHeight = 12;
+    public float currentGravity = 1;
+    public bool grounded;
 
     private float currentSpeed;
     private float targetSpeed;
@@ -19,6 +22,7 @@ public class SimpleController : MonoBehaviour {
 	// Use this for initialization.
 	void Start () {
         playerPhysics = GetComponent<PlayerPhysics>();
+        grounded = false;
 	}
 	
 	// Update is called once per frame.
@@ -26,8 +30,25 @@ public class SimpleController : MonoBehaviour {
         targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
         currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
 
+        if (grounded == true)
+        {
+            amountToMove.y = 0;
+            currentGravity = 0;
+
+            // Jump.
+            if (Input.GetButtonDown("Jump"))
+            {
+                amountToMove.y = jumpHeight;
+            }
+        }
+        if (grounded == false)
+        {
+            if (currentGravity == 0)
+                currentGravity = gravity;
+        }
+
         amountToMove.x = currentSpeed;
-        amountToMove.y -= gravity * Time.deltaTime;
+        amountToMove.y -= currentGravity * Time.deltaTime;
         playerPhysics.Move(amountToMove * Time.deltaTime);
     }
 
@@ -41,6 +62,22 @@ public class SimpleController : MonoBehaviour {
             float dir = Mathf.Sign(target - n); // n must be increased or decreased to get closer to target.
             n += a * Time.deltaTime * dir;
             return (dir == Mathf.Sign(target - n)) ? n : target; // if n has now passed target then return target, otherwise return n.
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            grounded = false;
         }
     }
 }
