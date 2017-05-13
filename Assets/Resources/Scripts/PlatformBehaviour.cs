@@ -7,16 +7,16 @@ public class PlatformBehaviour : MonoBehaviour {
     public float max_distance_offset = 10.0f;
     public bool going_up = true;
     public float speed = 10.0f;
-    float initial_y = 0.0f;
+    Vector3 initial_pos;
 	// Use this for initialization
 	void Start () {
-        initial_y = gameObject.transform.position.y;
+        initial_pos = gameObject.transform.localPosition;
 
     }
 
     void OnEnable()
     {
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, initial_y, gameObject.transform.position.z);
+        initial_pos = gameObject.transform.localPosition;
     }
 
     // Update is called once per frame
@@ -24,18 +24,19 @@ public class PlatformBehaviour : MonoBehaviour {
     {
         if (going_up)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(gameObject.transform.position.x, initial_y + max_distance_offset, gameObject.transform.position.z), speed * Time.deltaTime);
+            
+            gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, initial_pos + Vector3.forward * max_distance_offset, speed * Time.deltaTime);
 
-            if ((initial_y + max_distance_offset) - gameObject.transform.position.y < 0.01f)
+            if (Vector3.Distance(gameObject.transform.localPosition, initial_pos + Vector3.forward * max_distance_offset) < 0.01f)
             {
-                going_up = false;
+                going_up = false; 
             }
         }
         else
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(gameObject.transform.position.x, initial_y - max_distance_offset, gameObject.transform.position.z), speed * Time.deltaTime);
+            gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, initial_pos + Vector3.forward * -max_distance_offset, speed * Time.deltaTime);
 
-            if (gameObject.transform.position.y - (initial_y - max_distance_offset) < 0.01f)
+            if (Vector3.Distance(gameObject.transform.localPosition, initial_pos + Vector3.forward * -max_distance_offset) < 0.01f)
             {
                 going_up = true;
             }

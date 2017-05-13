@@ -17,13 +17,13 @@ namespace Vuforia
         #region PRIVATE_MEMBER_VARIABLES
  
         private TrackableBehaviour mTrackableBehaviour;
-    
+        bool markerFound = false;
         #endregion // PRIVATE_MEMBER_VARIABLES
 
 
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
-    
+
         void Start()
         {
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
@@ -59,6 +59,11 @@ namespace Vuforia
             }
         }
 
+        public bool markerDetected()
+        {
+            return markerFound;
+        }
+
         #endregion // PUBLIC_METHODS
 
 
@@ -69,7 +74,8 @@ namespace Vuforia
         private void OnTrackingFound()
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
-            Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
+            Collider2D[] colliderComponents = GetComponentsInChildren<Collider2D>(true);
+            
 
             // Enable rendering:
             foreach (Renderer component in rendererComponents)
@@ -78,11 +84,13 @@ namespace Vuforia
             }
 
             // Enable colliders:
-            foreach (Collider component in colliderComponents)
+            foreach (Collider2D component in colliderComponents)
             {
                 component.enabled = true;
-                component.gameObject.SetActive(true);
+                
             }
+
+            markerFound = true;
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
@@ -91,7 +99,7 @@ namespace Vuforia
         private void OnTrackingLost()
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
-            Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
+            Collider2D[] colliderComponents = GetComponentsInChildren<Collider2D>(true);
 
             // Disable rendering:
             foreach (Renderer component in rendererComponents)
@@ -100,15 +108,16 @@ namespace Vuforia
             }
 
             // Disable colliders:
-            foreach (Collider component in colliderComponents)
+            foreach (Collider2D component in colliderComponents)
             {
                 component.enabled = false;
-                component.gameObject.SetActive(false);
+                
             }
-
+            markerFound = false;
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 
         #endregion // PRIVATE_METHODS
+
     }
 }
