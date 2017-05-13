@@ -74,7 +74,7 @@ namespace Vuforia
         private void OnTrackingFound()
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
-            Collider2D[] colliderComponents = GetComponentsInChildren<Collider2D>(true);
+            Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
             
 
             // Enable rendering:
@@ -84,10 +84,10 @@ namespace Vuforia
             }
 
             // Enable colliders:
-            foreach (Collider2D component in colliderComponents)
+            foreach (Collider component in colliderComponents)
             {
                 component.enabled = true;
-                
+                component.gameObject.SetActive(true); 
             }
 
             markerFound = true;
@@ -99,7 +99,7 @@ namespace Vuforia
         private void OnTrackingLost()
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
-            Collider2D[] colliderComponents = GetComponentsInChildren<Collider2D>(true);
+            Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
             // Disable rendering:
             foreach (Renderer component in rendererComponents)
@@ -108,10 +108,10 @@ namespace Vuforia
             }
 
             // Disable colliders:
-            foreach (Collider2D component in colliderComponents)
+            foreach (Collider component in colliderComponents)
             {
                 component.enabled = false;
-                
+                component.gameObject.SetActive(false);
             }
             markerFound = false;
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");

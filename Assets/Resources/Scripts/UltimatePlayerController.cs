@@ -11,14 +11,14 @@ public class UltimatePlayerController : MonoBehaviour {
     public LayerMask whatIsGround;
     public int player = 0;
 
-    Rigidbody2D myBody;
+    Rigidbody myBody;
     float groundRadius = 0.1f;
     string input_horizontal = "Horizontal01";
     string input_jump = "Jump01";
 
     // Use this for initialization
     void Start () {
-        myBody = this.GetComponent<Rigidbody2D>();
+        myBody = this.GetComponent<Rigidbody>();
 
         switch (player)
         {
@@ -42,12 +42,17 @@ public class UltimatePlayerController : MonoBehaviour {
     }
 
     void FixedUpdate () {
-        grounded = Physics2D.OverlapCircle(tagGround.position, groundRadius, whatIsGround);
-
+        Collider[] colliders = Physics.OverlapSphere(tagGround.position, groundRadius, whatIsGround);
+        if (colliders.Length > 0)
+            grounded = true;
+        else
+            grounded = false;
         float move = Input.GetAxis(input_horizontal);
-
-        myBody.velocity = new Vector2(move * maxSpeed, myBody.velocity.y);
-	}
+        float yVel = transform.InverseTransformDirection(myBody.velocity).y;
+        Vector3 vel = new Vector3((move * maxSpeed), yVel);
+        myBody.velocity = transform.TransformDirection(vel);
+        //myBody.velocity = new Vector3((move * maxSpeed), myBody.velocity.y);
+    }
 
     // Update is called once per frame
     void Update()
@@ -55,7 +60,7 @@ public class UltimatePlayerController : MonoBehaviour {
         // Jump.
         if(grounded && Input.GetButtonDown(input_jump))
         {
-            myBody.AddForce(new Vector2(0, jumpForce));
+            myBody.AddForce(transform.up.normalized * jumpForce);
         }
     }
 }

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="bikini-cat" size="1.000000 1.405992" />
+    <ImageTarget name="papa-bless" size="1.000000 1.333333" />
+    <ImageTarget name="see-the-depression" size="1.000000 1.333333" />
+    <ImageTarget name="exploding-kitten" size="1.000000 1.393360" />
+    <ImageTarget name="attack-penisu" size="1.000000 1.419674" />
     <ImageTarget name="fournier" size="1.000000 1.199306" />
     <ImageTarget name="espadas" size="1.000000 1.789402" />
     <ImageTarget name="copas" size="1.000000 1.768708" />

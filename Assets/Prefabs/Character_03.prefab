@@ -53,10 +53,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4341895606541136}
-  - component: {fileID: 70519096507587052}
-  - component: {fileID: 50575715327651488}
-  - component: {fileID: 114433003501291944}
   - component: {fileID: 212829791227053494}
+  - component: {fileID: 136336689839352476}
+  - component: {fileID: 54988535831078092}
+  - component: {fileID: 114810161146712324}
   m_Layer: 10
   m_Name: Character_03
   m_TagString: Untagged
@@ -194,42 +194,22 @@ Transform:
   m_Father: {fileID: 4059353749775896}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50575715327651488
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!54 &54988535831078092
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1423868665024286}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
+  serializedVersion: 2
   m_Mass: 1
-  m_LinearDrag: 0
+  m_Drag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.5
-  m_Material: {fileID: 6200000, guid: 0be43a8943534ff4cabc9dd53ccda5bb, type: 2}
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_Constraints: 112
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!70 &70519096507587052
-CapsuleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1423868665024286}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -7.4741734e-11, y: -0.000626979}
-  m_Size: {x: 0.4800001, y: 0.3837264}
-  m_Direction: 1
---- !u!114 &114433003501291944
+--- !u!114 &114810161146712324
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -248,6 +228,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294966271
   player: 3
+--- !u!136 &136336689839352476
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423868665024286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.18907766
+  m_Height: 0.4800001
+  m_Direction: 0
+  m_Center: {x: 0.00000012833291, y: 0.002314783, z: -0.0000009838853}
 --- !u!198 &198559637148502470
 ParticleSystem:
   m_ObjectHideFlags: 1

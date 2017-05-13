@@ -16,7 +16,7 @@ public class GravityChecker : MonoBehaviour {
     {
         if(transform.up != last_transform)
         { 
-            Physics2D.gravity = (new Vector2(transform.up.normalized.x, transform.up.normalized.y)) * -gravity;
+            Physics.gravity = (new Vector3(transform.up.normalized.x, transform.up.normalized.y, transform.up.normalized.z)) * -gravity;
             last_transform = transform.up;
         }
         
