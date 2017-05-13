@@ -27,7 +27,7 @@ public class SimpleController : MonoBehaviour {
 	
 	// Update is called once per frame.
 	void Update () {
-        targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
+        targetSpeed = Input.GetAxisRaw("Horizontal01") * speed;
         currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
 
         if (grounded == true)
@@ -36,7 +36,7 @@ public class SimpleController : MonoBehaviour {
             currentGravity = 0;
 
             // Jump.
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump01"))
             {
                 amountToMove.y = jumpHeight;
             }
