@@ -13,35 +13,46 @@ public enum Level_states
 
 public class LevelManager : MonoBehaviour {
 
-    int round_num = 0;
+    public int round_num = 0;
     bool[] player_playing = new bool[4];
-
+    bool[] player_finished = new bool[4];
     GameObject place_traps;
     public Text place_timer = null;
     GameObject round_score;
     GameObject ui_in_game;
     public Text in_game_text = null;
+    public static LevelManager current_level = null;
 
     GameObject[] player = new GameObject[4];
     float timer = 0.0f;
 
     Level_states current_state = Level_states.STARTING;
 
-    void Start()
+    void Awake()
     {
+        current_level = this;
         //Getting All the data
         player_playing = GameManager.current.player_playing;
         place_traps = GameObject.FindGameObjectWithTag("place_traps");
         place_timer = place_traps.GetComponentInChildren<Text>(true);
+        place_traps.SetActive(false);
         round_score = GameObject.FindGameObjectWithTag("round_score");
+        round_score.SetActive(false);
         ui_in_game = GameObject.FindGameObjectWithTag("ui_in_game");
         in_game_text = ui_in_game.GetComponentInChildren<Text>(true);
+        ui_in_game.SetActive(false);
         player[0] = GameObject.FindGameObjectWithTag("Player01");
         player[1] = GameObject.FindGameObjectWithTag("Player02");
         player[2] = GameObject.FindGameObjectWithTag("Player03");
         player[3] = GameObject.FindGameObjectWithTag("Player04");
 
-        current_state = Level_states.PLACE_TRAPS;
+        round_num = GameManager.current.round_num;
+        current_state = Level_states.STARTING;
+    }
+
+    void Start()
+    {
+
     }
 
     void Update()
@@ -49,6 +60,7 @@ public class LevelManager : MonoBehaviour {
         switch (current_state)
         {
             case Level_states.STARTING:
+                OnStart();
                 break;
             case Level_states.PLACE_TRAPS:
                 OnTrapTime();
@@ -73,8 +85,15 @@ public class LevelManager : MonoBehaviour {
             else
                 player[i].SetActive(false);
         }
+        if(round_num == 0)
+            Change_State(Level_states.IN_GAME);
+        else
+            Change_State(Level_states.PLACE_TRAPS);
     }
-
+    public Level_states GetState()
+    {
+        return current_state;
+    }
     public void Change_State(Level_states new_state)
     {
         OnChangeState(new_state);
@@ -138,6 +157,6 @@ public class LevelManager : MonoBehaviour {
         else
             in_game_text.text = seconds + ":" + miliseconds;
         if (timer > 60)
-            Change_State(Level_states.IN_GAME);
+            Change_State(Level_states.SCORE);
     }
 }

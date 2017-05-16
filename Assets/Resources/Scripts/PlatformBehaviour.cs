@@ -22,24 +22,29 @@ public class PlatformBehaviour : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (going_up)
-        {
+        if(LevelManager.current_level.GetState() == Level_states.IN_GAME)
+        { 
+            if (going_up)
+            {
             
-            gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, initial_pos + Vector3.forward * max_distance_offset, speed * Time.deltaTime);
+                gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, initial_pos + Vector3.up * max_distance_offset, speed * Time.deltaTime);
 
-            if (Vector3.Distance(gameObject.transform.localPosition, initial_pos + Vector3.forward * max_distance_offset) < 0.01f)
+                if (Vector3.Distance(gameObject.transform.localPosition, initial_pos + Vector3.up * max_distance_offset) < 0.01f)
+                {
+                    going_up = false; 
+                }
+            }
+            else
             {
-                going_up = false; 
+                gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, initial_pos + Vector3.up * -max_distance_offset, speed * Time.deltaTime);
+
+                if (Vector3.Distance(gameObject.transform.localPosition, initial_pos + Vector3.up * -max_distance_offset) < 0.01f)
+                {
+                    going_up = true;
+                }
             }
         }
-        else
-        {
-            gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, initial_pos + Vector3.forward * -max_distance_offset, speed * Time.deltaTime);
-
-            if (Vector3.Distance(gameObject.transform.localPosition, initial_pos + Vector3.forward * -max_distance_offset) < 0.01f)
-            {
-                going_up = true;
-            }
-        }
+        else if(LevelManager.current_level.GetState() == Level_states.STARTING)
+            initial_pos = gameObject.transform.localPosition;
     }
 }

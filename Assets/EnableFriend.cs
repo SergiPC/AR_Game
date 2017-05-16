@@ -15,7 +15,6 @@ public class EnableFriend : MonoBehaviour {
     void OnDisable()
     {
         friend.SetActive(false);
-
     }
 
 }

@@ -35,7 +35,7 @@ public class BulletBehaviour : MonoBehaviour {
         if(Bullet != null )
         {
             GameObject tmp_bullet = Instantiate(Bullet, gameObject.transform.position, gameObject.transform.rotation);
-            Rigidbody2D bullet_rigid = tmp_bullet.GetComponent<Rigidbody2D>();
+            Rigidbody bullet_rigid = tmp_bullet.GetComponent<Rigidbody>();
 
             bullet_rigid.AddForce(gameObject.transform.right * bullet_force);
             Destroy(tmp_bullet, bullet_die_timer);
