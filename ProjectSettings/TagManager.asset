@@ -8,6 +8,13 @@ TagManager:
   - Projectil
   - NormalTurret
   - Ground
+  - Player01
+  - Player02
+  - Player03
+  - Player04
+  - place_traps
+  - round_score
+  - ui_in_game
   layers:
   - Default
   - TransparentFX
