@@ -68,8 +68,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 1166787980103438, guid: 0d06a0295a2e45e4980daa1ed7de02c2, type: 2}
   bullet_force: 100
-  bullet_cooldown: 3
-  bullet_die_timer: 1
+  bullet_cooldown: 2
+  bullet_die_timer: 4
 --- !u!212 &212674202384127534
 SpriteRenderer:
   m_ObjectHideFlags: 1
