@@ -108,4 +108,25 @@ public class GameManager : MonoBehaviour {
         if(num_players > 0 )
             SceneManager.LoadScene(1);
     }
+
+    public void RetrunToMenu()
+    {
+        if (num_players > 0)
+            SceneManager.LoadScene(0);
+    }
+
+    public int GetHigherScore()
+    {
+        int max_num = 0;
+        int id = 0;
+        for(int i = 0;i<4;i++)
+        {
+            if(max_num < player_scores[i])
+            {
+                id = i;
+                max_num = player_scores[i];
+            }
+        }
+        return id;
+    }
 }

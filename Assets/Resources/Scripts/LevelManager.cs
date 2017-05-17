@@ -18,12 +18,13 @@ public class LevelManager : MonoBehaviour {
     bool[] player_playing = new bool[4];
     bool[] player_finished = new bool[4];
     GameObject place_traps;
-    public Text place_timer = null;
+    Text place_timer = null;
     GameObject round_score;
     GameObject ui_in_game;
-    public Text in_game_text = null;
+    Text in_game_text = null;
     public static LevelManager current_level = null;
     float level_time = 180.0f;
+    Text final_result = null;
     GameObject[] player = new GameObject[4];
     float timer = 0.0f;
 
@@ -38,6 +39,8 @@ public class LevelManager : MonoBehaviour {
         place_timer = place_traps.GetComponentInChildren<Text>(true);
         place_traps.SetActive(false);
         round_score = GameObject.FindGameObjectWithTag("round_score");
+        final_result = round_score.GetComponentInChildren<Text>(true);
+        round_score.transform.GetChild(0).gameObject.SetActive(false);
         round_score.SetActive(false);
         ui_in_game = GameObject.FindGameObjectWithTag("ui_in_game");
         in_game_text = ui_in_game.GetComponentInChildren<Text>(true);
@@ -81,7 +84,7 @@ public class LevelManager : MonoBehaviour {
                 OnScore();
                 break;
             case Level_states.FINISHED:
-                OnScore();
+                OnWin();
                 break;
         }
         timer += Time.deltaTime;
@@ -118,9 +121,11 @@ public class LevelManager : MonoBehaviour {
     {
         switch (new_state)
         {
-            case Level_states.STARTING: OnStart();
+            case Level_states.STARTING:
+                OnStart();
                 break;
-            case Level_states.PLACE_TRAPS: place_traps.SetActive(true);
+            case Level_states.PLACE_TRAPS:
+                place_traps.SetActive(true);
                 break;
             case Level_states.IN_GAME:
                 ui_in_game.SetActive(true);
@@ -129,9 +134,27 @@ public class LevelManager : MonoBehaviour {
                 player[2].GetComponent<UltimatePlayerController>().enabled = true;
                 player[3].GetComponent<UltimatePlayerController>().enabled = true;
                 break;
-            case Level_states.SCORE: round_score.SetActive(true);
+            case Level_states.SCORE:
+                round_score.SetActive(true);
                 break;
             case Level_states.FINISHED:
+                round_score.SetActive(true);
+                round_score.transform.GetChild(0).gameObject.SetActive(true);
+                switch (GameManager.current.GetHigherScore())
+                {
+                    case 0:
+                        final_result.text = "PLAYER 1 WINS!";
+                        break;
+                    case 1:
+                        final_result.text = "PLAYER 2 WINS!";
+                        break;
+                    case 2:
+                        final_result.text = "PLAYER 3 WINS!";
+                        break;
+                    case 3:
+                        final_result.text = "PLAYER 4 WINS!";
+                        break;
+                }
                 break;
         }
         switch (current_state)
@@ -152,6 +175,8 @@ public class LevelManager : MonoBehaviour {
                 round_score.SetActive(false);
                 break;
             case Level_states.FINISHED:
+                round_score.SetActive(false);
+                round_score.transform.GetChild(0).gameObject.SetActive(false);
                 break;
         }
         timer = 0.0f;
@@ -161,13 +186,9 @@ public class LevelManager : MonoBehaviour {
     {
         float time = 10 - timer;
         int seconds = Mathf.FloorToInt(time);
-        int miliseconds = (int)((time - (float)seconds) * 1000f);
-        if (miliseconds < 100)
-            place_timer.text = "0" + seconds + ":0" + miliseconds;
-        else if (miliseconds < 10)
-            place_timer.text = "0" + seconds + ":00" + miliseconds;
-        else
-            place_timer.text = "0" + seconds + ":" + miliseconds;
+
+        place_timer.text = seconds.ToString();
+
         if (timer > 10)
             Change_State(Level_states.IN_GAME);
     }
@@ -176,20 +197,22 @@ public class LevelManager : MonoBehaviour {
     {
         float time = level_time - timer;
         int seconds = Mathf.FloorToInt(time);
-        int miliseconds = (int)((time - (float)seconds) * 1000f);
-        if (miliseconds < 100)
-            in_game_text.text = seconds + ":0" + miliseconds;
-        else if (miliseconds < 10)
-            in_game_text.text = seconds + ":00" + miliseconds;
-        else
-            in_game_text.text = seconds + ":" + miliseconds;
+
+        in_game_text.text = seconds.ToString();
+
         if (timer > level_time)
             Change_State(Level_states.SCORE);
     }
 
     void OnScore()
     {
-        if (timer > 20f)
+        if (timer > 10f)
             GameManager.current.LoadScene();
+    }
+
+    void OnWin()
+    {
+        if (timer > 20f)
+            GameManager.current.RetrunToMenu();
     }
 }
