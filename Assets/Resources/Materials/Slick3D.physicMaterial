@@ -6,8 +6,8 @@ PhysicMaterial:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Slick3D
-  dynamicFriction: 0.01
-  staticFriction: 0.01
+  dynamicFriction: 0.03
+  staticFriction: 0.03
   bounciness: 0
   frictionCombine: 0
   bounceCombine: 0

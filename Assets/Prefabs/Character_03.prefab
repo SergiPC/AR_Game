@@ -220,15 +220,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725afba87f338f2408eec410bae0d4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 3
-  jumpForce: 235
+  maxSpeed: 1.75
+  jumpForce: 160
   grounded: 0
   tagGround: {fileID: 4206865477671588}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294966271
   player: 3
-  respawn_time: 0
+  respawn_time: 1
 --- !u!136 &136336689839352476
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -303,7 +303,7 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       minMaxState: 0
-      scalar: 0.12
+      scalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -444,7 +444,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
     startSize:
       minMaxState: 0
-      scalar: 0.04
+      scalar: 0.025
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3301,13 +3301,13 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 275117700
+  randomSeed: 1123473335
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       minMaxState: 0
-      scalar: 0.09
+      scalar: 0.08
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3448,7 +3448,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
     startSize:
       minMaxState: 0
-      scalar: 0.04
+      scalar: 0.025
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6305,13 +6305,13 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -829250066
+  randomSeed: 2116518787
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       minMaxState: 0
-      scalar: 0.15
+      scalar: 0.13
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6452,7 +6452,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
     startSize:
       minMaxState: 0
-      scalar: 0.04
+      scalar: 0.025
       maxCurve:
         serializedVersion: 2
         m_Curve:
