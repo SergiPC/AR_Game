@@ -713,12 +713,12 @@ Prefab:
     - target: {fileID: 224716355295680722, guid: 7537a09ec48e148449d73925c9521f31,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 840
+      value: 692
       objectReference: {fileID: 0}
     - target: {fileID: 224716355295680722, guid: 7537a09ec48e148449d73925c9521f31,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 140
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 224312388965704618, guid: 7537a09ec48e148449d73925c9521f31,
         type: 2}
@@ -749,11 +749,12 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 220398e9808db354381886dfc01c9832,
+        type: 3}
     - target: {fileID: 114397290228032546, guid: 7537a09ec48e148449d73925c9521f31,
         type: 2}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114397290228032546, guid: 7537a09ec48e148449d73925c9521f31,
         type: 2}
@@ -769,6 +770,74 @@ Prefab:
         type: 2}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224358787344273000, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 179
+      objectReference: {fileID: 0}
+    - target: {fileID: 224358787344273000, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114397290228032546, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114393716917748884, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 220398e9808db354381886dfc01c9832,
+        type: 3}
+    - target: {fileID: 224891074257756700, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 179
+      objectReference: {fileID: 0}
+    - target: {fileID: 224891074257756700, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114708452074221202, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7e917e9db28dcb14cb13a531f08450e2,
+        type: 3}
+    - target: {fileID: 224218362700578582, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 380.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224218362700578582, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 60.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061426149486098, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_Text
+      value: 'PLACE  THE  TRAPS! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 224179447389956936, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: 114744597497908528, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7e917e9db28dcb14cb13a531f08450e2,
+        type: 3}
+    - target: {fileID: 114025432185261810, guid: 7537a09ec48e148449d73925c9521f31,
+        type: 2}
+      propertyPath: m_Text
+      value: 'PLAYER  1  WINS ! '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7537a09ec48e148449d73925c9521f31, type: 2}
