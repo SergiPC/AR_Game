@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour {
         if (current == null)
             current = this;
         else
-            Destroy(this);
+            Destroy(this.gameObject);
 
+        DontDestroyOnLoad(this);
     }
 
     void Start ()
@@ -29,14 +30,7 @@ public class GameManager : MonoBehaviour {
             player_finished[i] = false;
             player_scores[i] = 0;
         }
-            
-
     }
-
-	void Update ()
-    {
-		
-	}
 
     public void  ActivatePlayer(int player_num)
     {
@@ -77,17 +71,26 @@ public class GameManager : MonoBehaviour {
                 player_scores[player_num] += 3;
                 break;
             case 2:
-                player_scores[player_num] += 1;
+                player_scores[player_num] += 2;
                 break;
             case 3:
-                player_scores[player_num] += 0;
+                player_scores[player_num] += 1;
                 break;
         }
         if (num_finished + 1 >= num_players)
         {
-            round_num++;
-            LevelManager.current_level.Change_State(Level_states.SCORE);
-            ResetLevel();
+            if (round_num == 3)
+            {
+                LevelManager.current_level.Change_State(Level_states.FINISHED);
+            }
+            else
+            {
+                round_num++;
+                LevelManager.current_level.Change_State(Level_states.SCORE);
+                ResetLevel();
+            }
+            
+
         }
             
     }
@@ -102,6 +105,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(1);
+        if(num_players > 0 )
+            SceneManager.LoadScene(1);
     }
 }

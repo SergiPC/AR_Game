@@ -86,10 +86,12 @@ namespace Vuforia
             // Enable colliders:
             foreach (Collider component in colliderComponents)
             {
-                component.enabled = true;
-                component.gameObject.SetActive(true); 
+                component.enabled = true; 
             }
-
+            if (transform.childCount > 0)
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
             markerFound = true;
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
@@ -111,7 +113,10 @@ namespace Vuforia
             foreach (Collider component in colliderComponents)
             {
                 component.enabled = false;
-                component.gameObject.SetActive(false);
+            }
+            if(transform.childCount > 0)
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
             }
             markerFound = false;
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");

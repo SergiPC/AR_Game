@@ -54,3 +54,4 @@ MonoBehaviour:
   player_scores: 00000000000000000000000000000000
   num_players: 0
   player_playing: 00000000
+  round_num: 0

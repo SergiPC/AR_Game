@@ -20,14 +20,16 @@ public class BulletBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (bullet_timer >= bullet_cooldown)
+        if(LevelManager.current_level.GetState() == Level_states.IN_GAME)
         {
-            FireBullet();
-            bullet_timer = 0.0f;
+            if (bullet_timer >= bullet_cooldown)
+            {
+                FireBullet();
+                bullet_timer = 0.0f;
+            }
+            else
+                bullet_timer += Time.deltaTime;
         }
-        else
-            bullet_timer += Time.deltaTime;
-
     }
 
     void FireBullet()

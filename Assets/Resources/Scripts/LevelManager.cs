@@ -8,7 +8,8 @@ public enum Level_states
     STARTING,
     PLACE_TRAPS,
     IN_GAME,
-    SCORE
+    SCORE,
+    FINISHED
 }
 
 public class LevelManager : MonoBehaviour {
@@ -22,7 +23,7 @@ public class LevelManager : MonoBehaviour {
     GameObject ui_in_game;
     public Text in_game_text = null;
     public static LevelManager current_level = null;
-
+    float level_time = 180.0f;
     GameObject[] player = new GameObject[4];
     float timer = 0.0f;
 
@@ -46,13 +47,21 @@ public class LevelManager : MonoBehaviour {
         player[2] = GameObject.FindGameObjectWithTag("Player03");
         player[3] = GameObject.FindGameObjectWithTag("Player04");
 
+        player[0].GetComponent<UltimatePlayerController>().enabled = false;
+        player[1].GetComponent<UltimatePlayerController>().enabled = false;
+        player[2].GetComponent<UltimatePlayerController>().enabled = false;
+        player[3].GetComponent<UltimatePlayerController>().enabled = false;
+
         round_num = GameManager.current.round_num;
         current_state = Level_states.STARTING;
     }
 
     void Start()
     {
-
+        for(int i = 0;i < 4;i++)
+        {
+            player_playing[i] = GameManager.current.player_playing[i];
+        }
     }
 
     void Update()
@@ -69,6 +78,10 @@ public class LevelManager : MonoBehaviour {
                 OnInGame();
                 break;
             case Level_states.SCORE:
+                OnScore();
+                break;
+            case Level_states.FINISHED:
+                OnScore();
                 break;
         }
         timer += Time.deltaTime;
@@ -81,6 +94,7 @@ public class LevelManager : MonoBehaviour {
             if (player_playing[i])
             {
                 player[i].SetActive(true);
+                Debug.Log("ACtivating player " + i);
             }
             else
                 player[i].SetActive(false);
@@ -108,9 +122,16 @@ public class LevelManager : MonoBehaviour {
                 break;
             case Level_states.PLACE_TRAPS: place_traps.SetActive(true);
                 break;
-            case Level_states.IN_GAME: ui_in_game.SetActive(true);
+            case Level_states.IN_GAME:
+                ui_in_game.SetActive(true);
+                player[0].GetComponent<UltimatePlayerController>().enabled = true;
+                player[1].GetComponent<UltimatePlayerController>().enabled = true;
+                player[2].GetComponent<UltimatePlayerController>().enabled = true;
+                player[3].GetComponent<UltimatePlayerController>().enabled = true;
                 break;
             case Level_states.SCORE: round_score.SetActive(true);
+                break;
+            case Level_states.FINISHED:
                 break;
         }
         switch (current_state)
@@ -121,10 +142,16 @@ public class LevelManager : MonoBehaviour {
                 place_traps.SetActive(false);
                 break;
             case Level_states.IN_GAME:
+                player[0].GetComponent<UltimatePlayerController>().enabled = false;
+                player[1].GetComponent<UltimatePlayerController>().enabled = false;
+                player[2].GetComponent<UltimatePlayerController>().enabled = false;
+                player[3].GetComponent<UltimatePlayerController>().enabled = false;
                 ui_in_game.SetActive(false);
                 break;
             case Level_states.SCORE:
                 round_score.SetActive(false);
+                break;
+            case Level_states.FINISHED:
                 break;
         }
         timer = 0.0f;
@@ -147,7 +174,7 @@ public class LevelManager : MonoBehaviour {
 
     void OnInGame()
     {
-        float time = 60 - timer;
+        float time = level_time - timer;
         int seconds = Mathf.FloorToInt(time);
         int miliseconds = (int)((time - (float)seconds) * 1000f);
         if (miliseconds < 100)
@@ -156,7 +183,13 @@ public class LevelManager : MonoBehaviour {
             in_game_text.text = seconds + ":00" + miliseconds;
         else
             in_game_text.text = seconds + ":" + miliseconds;
-        if (timer > 60)
+        if (timer > level_time)
             Change_State(Level_states.SCORE);
+    }
+
+    void OnScore()
+    {
+        if (timer > 20f)
+            GameManager.current.LoadScene();
     }
 }

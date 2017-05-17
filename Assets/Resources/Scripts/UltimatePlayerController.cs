@@ -12,7 +12,7 @@ public class UltimatePlayerController : MonoBehaviour {
     public int player = 0;
 
     Rigidbody myBody;
-    float groundRadius = 0.1f;
+    float groundRadius = 0.05f;
     string input_horizontal = "Horizontal01";
     string input_jump = "Jump01";
     public float respawn_time = 0.0f;
@@ -59,6 +59,13 @@ public class UltimatePlayerController : MonoBehaviour {
             g_col.enabled = false;
             alive = false;
             current_respawn_time = 0.0f;
+            Renderer[] child_c = GetComponentsInChildren<Renderer>();
+
+            foreach (Renderer r in child_c)
+            {
+                r.enabled = false;
+            }
+
         }
 
     }
@@ -88,11 +95,7 @@ public class UltimatePlayerController : MonoBehaviour {
             Vector3 vel = new Vector3((move * maxSpeed), yVel);
             myBody.velocity = transform.TransformDirection(vel);
             //myBody.velocity = new Vector3((move * maxSpeed), myBody.velocity.y);
-            // Jump.
-            if (grounded && Input.GetButtonDown(input_jump))
-            {
-                myBody.AddForce(transform.up.normalized * jumpForce);
-            }
+            
         }
         
     }
@@ -100,17 +103,40 @@ public class UltimatePlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if(!alive)
+        if (Input.GetKeyDown("" + player))
+            Respawn();
+        if (alive && !won)
+        {
+            // Jump.
+            if (grounded && Input.GetButtonDown(input_jump))
+            {
+                myBody.AddForce(transform.up.normalized * jumpForce);
+            }
+        }
+
+        if (!alive)
         {
             if(current_respawn_time >= respawn_time)
             {
-                g_col.enabled = true;
-                sprite.enabled = true;
-                myBody.velocity = Vector3.zero;
-                transform.position = transform.parent.position;
-                alive = true;
+                Respawn();
             }
             current_respawn_time += Time.deltaTime;
+        }
+    }
+
+    void Respawn ()
+    {
+        g_col.enabled = true;
+        sprite.enabled = true;
+        myBody.velocity = Vector3.zero;
+        transform.position = transform.parent.position;
+        alive = true;
+
+        Renderer[] child_c = GetComponentsInChildren<Renderer>(true);
+
+        foreach (Renderer r in child_c)
+        {
+            r.enabled = true;
         }
     }
 }
