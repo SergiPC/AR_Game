@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4433242526019658}
   - component: {fileID: 198937064889798624}
   - component: {fileID: 199241478176248544}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 212200416565787948}
   - component: {fileID: 65405759315380350}
   - component: {fileID: 54432944666994758}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bullet
   m_TagString: Malus
   m_Icon: {fileID: 0}
