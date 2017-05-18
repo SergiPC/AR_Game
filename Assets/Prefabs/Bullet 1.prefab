@@ -37,10 +37,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4341802403115860}
   - component: {fileID: 212200416565787948}
-  - component: {fileID: 65405759315380350}
   - component: {fileID: 54432944666994758}
+  - component: {fileID: 65194260345581412}
   m_Layer: 2
-  m_Name: Bullet
+  m_Name: Bullet 1
   m_TagString: Malus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ Transform:
   m_GameObject: {fileID: 1166787980103438}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4433242526019658}
   m_Father: {fileID: 0}
@@ -88,7 +88,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65405759315380350
+--- !u!65 &65194260345581412
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -98,7 +98,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.19, y: 0.13, z: 0.2}
+  m_Size: {x: 0.15999998, y: 0.16000004, z: 0.20000005}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198937064889798624
 ParticleSystem:
@@ -3187,8 +3187,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: cc5a147ebe3b08e4fb610c5a1c6664f8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4c59710550991184c855a05b894564d9, type: 3}
+  m_Color: {r: 0.854902, g: 0.3529412, b: 0.27058825, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

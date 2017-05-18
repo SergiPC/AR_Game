@@ -29,7 +29,7 @@ public class UltimatePlayerController : MonoBehaviour {
         g_col = GetComponent<Collider>();
         alive = true;
         won = false;
-        ini_pos = transform.position;
+        ini_pos = transform.localPosition;
         switch (player)
         {
             case 1:
@@ -103,7 +103,7 @@ public class UltimatePlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("" + player))
+        if (Input.GetKeyDown("" + player) && won == false)
             Respawn();
         if (alive && !won)
         {
@@ -124,14 +124,14 @@ public class UltimatePlayerController : MonoBehaviour {
         }
     }
 
-    void Respawn ()
+    public void Respawn ()
     {
         g_col.enabled = true;
         sprite.enabled = true;
         myBody.velocity = Vector3.zero;
-        transform.position = transform.parent.position;
+        transform.localPosition = ini_pos;
         alive = true;
-
+        won = false;
         Renderer[] child_c = GetComponentsInChildren<Renderer>(true);
 
         foreach (Renderer r in child_c)

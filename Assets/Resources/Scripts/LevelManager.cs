@@ -143,19 +143,20 @@ public class LevelManager : MonoBehaviour {
                 switch (GameManager.current.GetHigherScore())
                 {
                     case 0:
-                        final_result.text = "PLAYER 1 WINS!";
+                        final_result.text = "PLAYER  1  WIN!";
                         break;
                     case 1:
-                        final_result.text = "PLAYER 2 WINS!";
+                        final_result.text = "PLAYER  2  WIN!";
                         break;
                     case 2:
-                        final_result.text = "PLAYER 3 WINS!";
+                        final_result.text = "PLAYER  3  WIN!";
                         break;
                     case 3:
-                        final_result.text = "PLAYER 4 WINS!";
+                        final_result.text = "PLAYER  4  WIN!";
                         break;
                 }
                 break;
+                
         }
         switch (current_state)
         {
@@ -206,13 +207,20 @@ public class LevelManager : MonoBehaviour {
 
     void OnScore()
     {
-        if (timer > 10f)
-            GameManager.current.LoadScene();
+        if (timer > 6f)
+        {
+            for(int i = 0;i < 4;i++)
+            {
+                if(player[i].activeInHierarchy)
+                    player[i].GetComponent<UltimatePlayerController>().Respawn();
+            }
+            Change_State(Level_states.PLACE_TRAPS);
+        }
     }
 
     void OnWin()
     {
-        if (timer > 20f)
+        if (timer > 10f)
             GameManager.current.RetrunToMenu();
     }
 }
