@@ -422,7 +422,7 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 253667350}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d18523be699b8ca48a991923067d1ddb, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -674,7 +674,7 @@ Prefab:
     - target: {fileID: 114941146902563836, guid: cab476b1e960e744bafb47477bfa14a1,
         type: 2}
       propertyPath: level_time
-      value: 120
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cab476b1e960e744bafb47477bfa14a1, type: 2}
@@ -2680,7 +2680,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.26948774, y: 0, z: 0.5}
+      m_Extent: {x: 0.35884482, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -2732,7 +2732,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 4cfa89be00000000000000bf000000000000803f0000000000000000000000004cfa89be000000000000003f000000000000803f00000000000000000000803f4cfa893e00000000000000bf000000000000803f000000000000803f000000004cfa893e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: 82bab7be00000000000000bf000000000000803f00000000000000000000000082bab7be000000000000003f000000000000803f00000000000000000000803f82bab73e00000000000000bf000000000000803f000000000000803f0000000082bab73e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -3386,7 +3386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 1166787980103438, guid: 6521172ce09f6ea48b06969221f43ef7, type: 2}
   bullet_force: 100
-  bullet_cooldown: 1
+  bullet_cooldown: 1.2
   bullet_die_timer: 4
 --- !u!212 &1349093591
 SpriteRenderer:

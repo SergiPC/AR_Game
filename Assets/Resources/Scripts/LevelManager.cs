@@ -202,7 +202,19 @@ public class LevelManager : MonoBehaviour {
         in_game_text.text = seconds.ToString();
 
         if (timer > level_time)
-            Change_State(Level_states.SCORE);
+        {
+            if (GameManager.current.round_num == 3)
+            {
+                Change_State(Level_states.FINISHED);
+            }
+            else
+            {
+                GameManager.current.round_num++;
+                Change_State(Level_states.SCORE);
+                GameManager.current.ResetLevel();
+            }
+        }
+            
     }
 
     void OnScore()
@@ -221,6 +233,10 @@ public class LevelManager : MonoBehaviour {
     void OnWin()
     {
         if (timer > 10f)
+        {
             GameManager.current.RetrunToMenu();
+            GameManager.current.round_num = 0;
+        }
+            
     }
 }

@@ -10,8 +10,13 @@ public class GameObjectToLevel : MonoBehaviour {
 	// Use this for initialization
 	void Awake ()
     {
+        
     }
-	
+	void OnEnable()
+    {
+        OnDeactivate();
+        active = false;
+    }
 
 	void Update ()
     {

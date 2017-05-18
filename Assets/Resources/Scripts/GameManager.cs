@@ -111,6 +111,12 @@ public class GameManager : MonoBehaviour {
 
     public void RetrunToMenu()
     {
+        for (int i = 0; i < 4; ++i)
+        {
+            player_playing[i] = false;
+            player_finished[i] = false;
+            player_scores[i] = 0;
+        }
         if (num_players > 0)
             SceneManager.LoadScene(0);
     }
