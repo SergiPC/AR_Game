@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour {
     GameObject ui_in_game;
     Text in_game_text = null;
     public static LevelManager current_level = null;
-    float level_time = 180.0f;
+    public float level_time = 180.0f;
     Text final_result = null;
     GameObject[] player = new GameObject[4];
     float timer = 0.0f;
@@ -143,16 +143,16 @@ public class LevelManager : MonoBehaviour {
                 switch (GameManager.current.GetHigherScore())
                 {
                     case 0:
-                        final_result.text = "PLAYER  1  WIN!";
+                        final_result.text = "PLAYER  1  WINS!";
                         break;
                     case 1:
-                        final_result.text = "PLAYER  2  WIN!";
+                        final_result.text = "PLAYER  2  WINS!";
                         break;
                     case 2:
-                        final_result.text = "PLAYER  3  WIN!";
+                        final_result.text = "PLAYER  3  WINS!";
                         break;
                     case 3:
-                        final_result.text = "PLAYER  4  WIN!";
+                        final_result.text = "PLAYER  4  WINS!";
                         break;
                 }
                 break;
